@@ -30,9 +30,8 @@ namespace Task3
                 if (arraySize <= 0 || arraySize > 50)
                     Console.Write("Ошибка ввода. Неверный диапазон. Повторите ввод: ");
                 else
-                    break; // Ну, можно и без него обойтись, используя цикл с постусловием
-            }
-            return arraySize;
+                    return arraySize;
+            }      
         }
 
         static void PrintArray(int[] arr)
@@ -40,7 +39,7 @@ namespace Task3
             StringBuilder str = new StringBuilder("", arr.Length * 4);
 
             for (int i = 0; i < arr.Length; i++)
-                str.Append(arr[i].ToString() + " ");
+                str.Append(arr[i].ToString() + "\t");
 
             Console.WriteLine(str);
         }

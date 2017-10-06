@@ -45,7 +45,7 @@ namespace Task2
                 for (int j = 0; j < arr.GetLength(1); j++)
                 {
                     for (int k = 0; k < arr.GetLength(2); k++)
-                        str.Append(arr[i, j, k].ToString() + " ");
+                        str.Append(arr[i, j, k].ToString() + "\t");
                     str.Append("\n");
                 }
                 str.Append("\n");
@@ -54,7 +54,7 @@ namespace Task2
             Console.WriteLine(str);
         }
 
-        static void ChangeArray(ref int[,,] arr)
+        static void ChangeArray(int[,,] arr)
         {
             for (int i = 0; i < arr.GetLength(0); i++)
                 for (int j = 0; j < arr.GetLength(1); j++)
@@ -81,7 +81,7 @@ namespace Task2
             Console.WriteLine("Сгенерированый массив:");
             PrintArray(arr);
 
-            ChangeArray(ref arr);
+            ChangeArray(arr);
 
             Console.WriteLine("После замены всех положительнх элементов на нули:");
             PrintArray(arr);

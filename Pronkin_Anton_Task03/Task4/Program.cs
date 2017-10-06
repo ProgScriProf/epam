@@ -43,7 +43,7 @@ namespace Task4
             for (int i = 0; i < arr.GetLength(0); i++)
             {
                 for (int j = 0; j < arr.GetLength(1); j++)
-                    str.Append(arr[i, j].ToString() + " ");
+                    str.Append(arr[i, j].ToString() + "\t");
                 str.Append("\n");
             }
 

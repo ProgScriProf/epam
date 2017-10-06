@@ -1,0 +1,6 @@
+C:\Users\Антон\Desktop\epam\Pronkin_Anton_Task03\Task1\bin\Debug\Task1.exe.config
+C:\Users\Антон\Desktop\epam\Pronkin_Anton_Task03\Task1\bin\Debug\Task1.exe
+C:\Users\Антон\Desktop\epam\Pronkin_Anton_Task03\Task1\bin\Debug\Task1.pdb
+C:\Users\Антон\Desktop\epam\Pronkin_Anton_Task03\Task1\obj\Debug\Task1.csprojResolveAssemblyReference.cache
+C:\Users\Антон\Desktop\epam\Pronkin_Anton_Task03\Task1\obj\Debug\Task1.exe
+C:\Users\Антон\Desktop\epam\Pronkin_Anton_Task03\Task1\obj\Debug\Task1.pdb

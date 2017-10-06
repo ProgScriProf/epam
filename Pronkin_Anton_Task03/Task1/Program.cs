@@ -8,6 +8,13 @@ namespace Task1
 {
     class Program
     {
+
+        static void RandomArray(int[] arr, Random rnd)
+        {
+            for (int i = 0; i < arr.Length; i++)
+                arr[i] = rnd.Next(0, 50);
+        }
+
         static int EnterInt() // Ввод числа
         {
             string str = Console.ReadLine();
@@ -41,7 +48,7 @@ namespace Task1
             StringBuilder str = new StringBuilder("", arr.Length * 3);
 
             for (int i = 0; i < arr.Length; i++)
-                str.Append(arr[i].ToString() + " ");
+                str.Append(arr[i].ToString() + "\t");
 
             Console.WriteLine(str);
         }
@@ -50,8 +57,10 @@ namespace Task1
         {
             int min = arr[0];
             for (int i = 1; i < arr.Length; i++)
+            {
                 if (arr[i] < min)
                     min = arr[i];
+            }
             return min;
         }
 
@@ -64,7 +73,7 @@ namespace Task1
             return max;
         }
 
-        static void FastSort(ref int[] arr, int left, int right) // Быстрая сортировка
+        static void FastSort(int[] arr, int left, int right) // Быстрая сортировка
         {
             int oldLeft = left;
             int oldRight = right;
@@ -88,18 +97,17 @@ namespace Task1
             }
 
             if (oldLeft < right)
-                FastSort(ref arr, oldLeft, right);
+                FastSort(arr, oldLeft, right);
 
             if (oldRight > left)
-                FastSort(ref arr, left, oldRight);
+                FastSort(arr, left, oldRight);
         }
         static void Main(string[] args)
         {
             int[] arr = new int[EnterSizeArray()];
 
             Random rnd = new Random();
-            for (int i = 0; i < arr.Length; i++)
-                arr[i] = rnd.Next(0, 50);
+            RandomArray(arr, rnd);
 
             Console.WriteLine("Сгенерированый массив:");
             PrintArray(arr);
@@ -107,7 +115,7 @@ namespace Task1
             Console.WriteLine("Минимальное  значение = " + MinElement(arr).ToString());
             Console.WriteLine("Максимальное значение = " + MaxElement(arr).ToString());
 
-            FastSort(ref arr, 0, arr.Length - 1);
+            FastSort(arr, 0, arr.Length - 1);
 
             Console.WriteLine("\nСортированный массив:");
             PrintArray(arr);
