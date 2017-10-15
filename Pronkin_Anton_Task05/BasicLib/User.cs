@@ -76,7 +76,7 @@ namespace BasicLib
         {
             get
             {
-                throw new Exception("Нет обработки года!");
+                return (byte)(new DateTime((DateTime.Now - _date).Ticks).Year);
                 /*
                 const int DAY_OF_4YEARS = 1461;
                 int days = (DateTime.Now - _date).Days % DAY_OF_4YEARS;
@@ -120,8 +120,5 @@ namespace BasicLib
             Date = date;
             Patronymic = "";
         }
-
-
-
     }
 }

@@ -13,8 +13,8 @@ namespace BasicLib
 
     public class Round
     {
-        private Point _point;
-        private float _r;
+        protected Point _point;
+        protected float _r;
         public Round(float radius)
         {
             Radius = radius;
@@ -31,7 +31,18 @@ namespace BasicLib
             _point.Y = y;
         }
 
-        public float Radius
+        public Point Centre
+        {
+            get
+            {
+                return _point;
+            }
+            set
+            {
+                _point = value;
+            }
+        }
+        public virtual float Radius
         {
             get
             {
@@ -49,14 +60,14 @@ namespace BasicLib
                 }
             }
         }
-        public float Length
+        public virtual float Length
         {
             get
             {
                 return (float)(2 * Math.PI * _r);
             }
         }
-        public float Square
+        public virtual float Square
         {
             get
             {
