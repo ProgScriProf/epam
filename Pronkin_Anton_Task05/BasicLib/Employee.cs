@@ -24,7 +24,7 @@ namespace BasicLib
             }
             set
             {
-                if (value >= 0)
+                if (value >= 0 && value <= Age)
                 {
                     _experience = value;
                 }

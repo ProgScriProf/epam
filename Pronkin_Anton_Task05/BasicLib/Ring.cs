@@ -23,13 +23,13 @@ namespace BasicLib
             }
             set
             {
-                if (value > 0 && value != Radius2)
+                if (value != Radius2)
                 {
-                    _r = value;
+                    Radius = value;
                 }
                 else
                 {
-                    throw new RingException("Радиус должен являться положительным числом и не дожен равняться другому радиусу!");
+                    throw new RingException("Радиус не дожен равняться другому радиусу!");
                 }
             }
         }

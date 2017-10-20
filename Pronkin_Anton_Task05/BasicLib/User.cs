@@ -26,7 +26,7 @@ namespace BasicLib
             }
             set
             {
-                if (value.Length > 0 && (new Regex("[a-zA-Zа-яА-Я]+")).Match(value).Value == value)
+                if (!string.IsNullOrWhiteSpace(value) && (new Regex("[a-zA-Zа-яА-Я0-9-]+")).Match(value).Value == value)
                 {
                     _name = value;
                 }
@@ -44,7 +44,7 @@ namespace BasicLib
             }
             set
             {
-                if (value.Length > 0 && (new Regex("[a-zA-Zа-яА-Я- ]+")).Match(value).Value == value)
+                if (!string.IsNullOrWhiteSpace(value) && (new Regex("[a-zA-Zа-яА-Я0-9- ]+")).IsMatch(value))
                 {
                     _lastName = value;
                 }
@@ -62,7 +62,7 @@ namespace BasicLib
             }
             set
             {
-                if ((new Regex("[a-zA-Zа-яА-Я- ]+|")).Match(value).Value == value || value == "")
+                if ((new Regex("[a-zA-Zа-яА-Я- ]+")).Match(value).Value == value || value == "")
                 {
                     _patronymic = value;
                 }
@@ -76,7 +76,7 @@ namespace BasicLib
         {
             get
             {
-                return (byte)(new DateTime((DateTime.Now - _date).Ticks).Year);
+                return (byte)(new DateTime((DateTime.Now - _date).Ticks).Year - 1);
                 /*
                 const int DAY_OF_4YEARS = 1461;
                 int days = (DateTime.Now - _date).Days % DAY_OF_4YEARS;
