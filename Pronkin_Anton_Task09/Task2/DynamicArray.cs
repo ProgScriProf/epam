@@ -1,10 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 
-namespace Task1
+namespace Task2
 {
-    public class DynamicArray<T> where T : new()
+    public class DynamicArray<T> : IEnumerable<T> where T : new()
     {
         private T[] _arr;
         private int _length;
@@ -27,15 +27,15 @@ namespace Task1
         public DynamicArray() : this(8)
         {           
         }
-        public DynamicArray(int size)
+        public DynamicArray(int capacity)
         {
-            if (size < 0)
+            if (capacity <= 0)
             {
                 throw new IndexOutOfRangeException();
             }
             else
             {
-                _arr = new T[size];
+                _arr = new T[capacity];
                 _length = 0;
             }
         }
@@ -46,12 +46,12 @@ namespace Task1
                 Add(item);
             }
         }
-
+  
         public void AddRange(T[] items)
         {
             if (_arr.Length - _length < items.Length)
             {
-                ChangeSize(items.Length + _length);
+                ChangeCapacity(items.Length + _length);
             }
 
             foreach (T item in items)
@@ -63,32 +63,23 @@ namespace Task1
         {
             if (_length == _arr.Length)
             {
-                ChangeSize();
+                ChangeCapacity();
             }
             _arr[_length++] = item;
         }
-        private void ChangeSize()
+        private void ChangeCapacity()
         {
-            T[] newArr = new T[_length * 2];
-            for(int i = 0; i < _arr.Length; i++)
-            {
-                newArr[i] = _arr[i];
-            }
-            _arr = newArr;
+            ChangeCapacity(Capacity * 2);
         }
-        private void ChangeSize(int count)
+        private void ChangeCapacity(int count)
         {
             T[] newArr = new T[count];
-            for (int i = 0; i < _length; i++) 
-            {
-                newArr[i] = _arr[i];
-            }
+            Array.Copy(_arr, newArr, Capacity);
             _arr = newArr;
         }
 
         public bool Remove(T item)
         {
-            //int index = FindIndex(item);
             int index = Array.IndexOf(_arr, item);
             if (index == -1)
             {
@@ -96,10 +87,7 @@ namespace Task1
             }
             else
             {
-                for (int i = index; i < _length - 1; i++)
-                {
-                    _arr[i] = _arr[i + 1];
-                }
+                Array.Copy(_arr, index + 1, _arr, index, Capacity - index - 1);
                 _length--;
                 return true;
             }
@@ -110,15 +98,11 @@ namespace Task1
             
             if (_length == _arr.Length)
             {
-                ChangeSize();
+                ChangeCapacity();
             }
 
+            Array.Copy(_arr, index, _arr, index + 1, Capacity - index - 1);
             _length++;
-            for (int i = _length - 1; i > index; i--)
-            {
-                _arr[i] = _arr[i - 1];
-            }
-
             _arr[index] = value;
             
         }
@@ -130,6 +114,19 @@ namespace Task1
                 return;
             }
             throw new IndexOutOfRangeException($"Invalid index: {index.ToString()}");
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            for(int i = 0; i < _length; i++)
+            {
+                yield return _arr[i];
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
 
         public T this[int index]

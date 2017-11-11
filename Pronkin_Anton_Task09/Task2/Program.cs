@@ -1,16 +1,15 @@
 ﻿using System;
 
-namespace Task1
+namespace Task2
 {
     class Program
     {
-
         static void Print<T>(DynamicArray<T> arr) where T : new()
         {
             Console.WriteLine($"Capacity = {arr.Capacity}, Length = {arr.Length}:");
-            for(int i = 0; i < arr.Length; i++)
+            foreach(var item in arr)
             {
-                Console.Write($"{arr[i]}  ");
+                Console.Write($"{item}  ");
             }
             Console.WriteLine("\n");
         }
@@ -37,13 +36,35 @@ namespace Task1
             arr.Remove(2);
             Print(arr);
 
-            Console.WriteLine("Добавляем элемент на 2 позицию:");
-            arr.Insert(0, 2);
+            Console.WriteLine("Удаляем элемент со значением 5:");
+            arr.Remove(5);
+            Print(arr);
+
+            Console.WriteLine("Удаляем элемент со значением 9:");
+            arr.Remove(9);
+            Print(arr);
+
+
+            Console.WriteLine("Добавляем элемент -1 на 2 позицию:");
+            arr.Insert(-1, 2);
+            Print(arr);
+
+            Console.WriteLine("Добавляем элемент -1 на 10 позицию:");
+            arr.Insert(-1, 10);
+            Print(arr);
+
+            Console.WriteLine("Добавляем элемент -1 на 10 позицию:");
+            arr.Insert(-1, 10);
+            Print(arr);
+
+            Console.WriteLine("Добавляем элемент -1 на 10 позицию:");
+            arr.Insert(-1, 10);
             Print(arr);
 
             Console.WriteLine("Добавляем элемент в начало:");
             arr.Insert(-100, 0);
             Print(arr);
+
 
             Console.ReadKey();
 
